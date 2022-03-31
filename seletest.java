@@ -10,11 +10,15 @@ import java.io.IOException;
 public class ScreenshotDemo {
     public static void main(String[] args) {
         //set the location of chrome browser
-        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
         
         // Initialize browser
-        WebDriver driver = new ChromeDriver();
+       
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("headless");
+        options.addArguments("disable-gpu");
         
+         WebDriver driver = new ChromeDriver();
         //navigate to url
         driver.get("https://demoqa.com");
         
@@ -23,7 +27,7 @@ public class ScreenshotDemo {
         
         //Copy the file to a location and use try catch block to handle exception
         try {
-            FileUtils.copyFile(screenshot, new File("C:\\projectScreenshots\\homePageScreenshot.png"));
+            FileUtils.copyFile(screenshot, new File("/home/ec2-user"));
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
